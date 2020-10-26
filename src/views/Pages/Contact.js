@@ -8,8 +8,6 @@ import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
-import { setContactDetails } from "../../services/redux/actions";
 
 const Contact = props => {
   const { contactDetails, setContactDetails } = props || {};
@@ -196,16 +194,5 @@ Contact.propTypes = {
   setContactDetails: PropTypes.func
 };
 
-const mapStateToProps = state => {
-  return {
-    contactDetails: state.contactDetails
-  };
-};
-
 //make this component available to the app
-export default connect(
-  mapStateToProps,
-  {
-    setContactDetails
-  }
-)(Contact);
+export default Contact
