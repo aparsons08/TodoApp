@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import AppLayout from "layouts/App.jsx";
+import "assets/scss/material-dashboard-pro-react.scss?v=1.7.0";
+import history from "services/History";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import reducers from "./services/redux/reducers";
+import ReduxThunk from "redux-thunk";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(ReduxThunk))
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <Switch>
+        <Route path="/app" component={AppLayout} />
+        <Redirect from="/" to="/app/todos" />
+      </Switch>
+    </Router>
+  </Provider>,
+  document.getElementById("root")
+);
