@@ -20,7 +20,7 @@ const initialState = [
     completed: false
   }
 ];
-let id = 3;
+let id = 4;
 
 export default function(state = initialState, action) {
   switch (action.type) {

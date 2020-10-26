@@ -62,12 +62,6 @@
     "map-sass": "node-sass src/assets/scss/material-dashboard-pro-react.scss src/assets/css/material-dashboard-pro-react.css --source-map true",
     "release": "standard-version"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint:fix",
-      "pre-push": "npm run lint:check"
-    }
-  },
   "optionalDependencies": {
     "@types/googlemaps": "3.36.4",
     "@types/markerclustererplus": "2.1.33",
